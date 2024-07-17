@@ -1,33 +1,55 @@
 $(document).ready(function() {
   var numSmileys = 50;
+  var smileyStates = []; // Array zum Speichern der Smileys-Zustände
   
-  // Funktion zum Erstellen der Smileys
+  // Funktion zum Laden der Smileys-Zustände aus dem Local Storage
+  function loadSmileyStates() {
+    var storedStates = localStorage.getItem('smileyStates');
+    if (storedStates) {
+      smileyStates = JSON.parse(storedStates);
+    } else {
+      // Falls kein gespeicherter Zustand vorhanden ist, initialisiere mit '🌕'
+      smileyStates = Array(numSmileys).fill('🌕');
+    }
+  }
+  
+  // Funktion zum Speichern der Smileys-Zustände im Local Storage
+  function saveSmileyStates() {
+    localStorage.setItem('smileyStates', JSON.stringify(smileyStates));
+  }
+  
+  // Funktion zum Erstellen der Smileys basierend auf ihren Zuständen
   function createSmileys() {
     var container = $('#container');
     container.empty(); // Container leeren, falls bereits gefüllt
     
     for (var i = 0; i < numSmileys; i++) {
-      var smiley = $('<div/>').addClass('smiley').text('🌕');
+      var smiley = $('<div/>').addClass('smiley').text(smileyStates[i]);
       container.append(smiley);
     }
   }
   
-  // Smileys initial erstellen
+  // Smileys initial laden
+  loadSmileyStates();
   createSmileys();
   
   // Event-Handler für Klick auf Smileys
   $('#container').on('click', '.smiley', function() {
-    var currentText = $(this).text();
+    var index = $(this).index(); // Index des geklickten Smileys
+    var currentText = smileyStates[index];
     
     if (currentText === '🌕') {
-      $(this).text('😑');
+      smileyStates[index] = '😑';
     } else if (currentText === '😑') {
-      $(this).text('😊');
+      smileyStates[index] = '😊';
     } else if (currentText === '😊') {
-      $(this).text('😁');
+      smileyStates[index] = '😁';
     } else {
-      $(this).text('🌕');
+      smileyStates[index] = '🌕';
     }
+    
+    saveSmileyStates(); // Zustände im Local Storage speichern
+    createSmileys(); // Smileys aktualisieren
   });
   
   // Event-Handler für Button "Ergebnisse zurücksetzen"
@@ -37,7 +59,9 @@ $(document).ready(function() {
   
   // Event-Handler für Ja-Button im Modal
   $('#yesBtn').click(function() {
-    createSmileys(); // Smileys zurücksetzen
+    smileyStates = Array(numSmileys).fill('🌕'); // Alle Smileys zurücksetzen
+    saveSmileyStates(); // Zustände im Local Storage speichern
+    createSmileys(); // Smileys aktualisieren
     $('#modal').css('display', 'none'); // Modal schließen
   });
   
@@ -49,6 +73,7 @@ $(document).ready(function() {
   // Event-Handler für Button "Weitere 50 hinzufügen"
   $('#addBtn').click(function() {
     numSmileys += 50;
-    createSmileys(); // Neue Smileys hinzufügen
+    loadSmileyStates(); // Smileys-Zustände neu laden
+    createSmileys(); // Smileys aktualisieren
   });
 });

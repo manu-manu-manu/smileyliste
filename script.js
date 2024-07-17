@@ -8,8 +8,9 @@ $(document).ready(function() {
     var storedData = localStorage.getItem('smileyAppData');
     if (storedData) {
       var parsedData = JSON.parse(storedData);
-      smileyStates = parsedData.smileyStates || Array(baseNumSmileys).fill('🌕');
+      smileyStates = parsedData.smileyStates || [];
       numAddedSmileys = parsedData.numAddedSmileys || 0;
+      baseNumSmileys = parsedData.baseNumSmileys || baseNumSmileys;
     } else {
       smileyStates = Array(baseNumSmileys).fill('🌕');
     }
@@ -19,7 +20,8 @@ $(document).ready(function() {
   function saveSmileyStates() {
     var data = {
       smileyStates: smileyStates,
-      numAddedSmileys: numAddedSmileys
+      numAddedSmileys: numAddedSmileys,
+      baseNumSmileys: baseNumSmileys
     };
     localStorage.setItem('smileyAppData', JSON.stringify(data));
   }
@@ -29,7 +31,8 @@ $(document).ready(function() {
     var container = $('#container');
     container.empty(); // Container leeren, falls bereits gefüllt
     
-    for (var i = 0; i < baseNumSmileys + numAddedSmileys; i++) {
+    var totalSmileys = baseNumSmileys + numAddedSmileys;
+    for (var i = 0; i < totalSmileys; i++) {
       var smiley = $('<div/>').addClass('smiley').text(smileyStates[i] || '🌕');
       container.append(smiley);
     }

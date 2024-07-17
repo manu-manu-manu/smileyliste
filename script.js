@@ -12,7 +12,7 @@ $(document).ready(function() {
       numAddedSmileys = parsedData.numAddedSmileys || 0;
       baseNumSmileys = parsedData.baseNumSmileys || baseNumSmileys;
     } else {
-      smileyStates = Array(baseNumSmileys).fill('🌕');
+      smileyStates = Array(baseNumSmileys).fill('🟡');
     }
   }
 
@@ -33,7 +33,7 @@ $(document).ready(function() {
     
     var totalSmileys = baseNumSmileys + numAddedSmileys;
     for (var i = 0; i < totalSmileys; i++) {
-      var smiley = $('<div/>').addClass('smiley').text(smileyStates[i] || '🌕');
+      var smiley = $('<div/>').addClass('smiley').text(smileyStates[i] || '🟡');
       container.append(smiley);
     }
   }
@@ -47,14 +47,14 @@ $(document).ready(function() {
     var index = $(this).index(); // Index des geklickten Smileys
     var currentText = smileyStates[index];
     
-    if (currentText === '🌕') {
+    if (currentText === '🟡') {
       smileyStates[index] = '😑';
     } else if (currentText === '😑') {
       smileyStates[index] = '😊';
     } else if (currentText === '😊') {
       smileyStates[index] = '😁';
     } else {
-      smileyStates[index] = '🌕';
+      smileyStates[index] = '🟡';
     }
     
     saveSmileyStates(); // Zustände im Local Storage speichern
@@ -68,7 +68,7 @@ $(document).ready(function() {
 
   // Event-Handler für Ja-Button im Modal
   $('#yesBtn').click(function() {
-    smileyStates = Array(baseNumSmileys).fill('🌕'); // Alle Smileys zurücksetzen
+    smileyStates = Array(baseNumSmileys).fill('🟡'); // Alle Smileys zurücksetzen
     numAddedSmileys = 0; // Zusätzlich hinzugefügte Smileys zurücksetzen
     saveSmileyStates(); // Zustände im Local Storage speichern
     createSmileys(); // Smileys aktualisieren

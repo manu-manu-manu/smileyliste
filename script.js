@@ -84,6 +84,7 @@ $(document).ready(function() {
   $('#addBtn').click(function() {
     numAddedSmileys += 50;
     saveSmileyStates(); // Zustände im Local Storage speichern
+    baseNumSmileys += 50; // Grundanzahl der Smileys erhöhen
     createSmileys(); // Smileys aktualisieren
   });
 });

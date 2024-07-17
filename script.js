@@ -83,8 +83,8 @@ $(document).ready(function() {
   // Event-Handler für Button "Weitere 50 hinzufügen"
   $('#addBtn').click(function() {
     numAddedSmileys += 50;
-    saveSmileyStates(); // Zustände im Local Storage speichern
     baseNumSmileys += 50; // Grundanzahl der Smileys erhöhen
+    saveSmileyStates(); // Zustände im Local Storage speichern
     createSmileys(); // Smileys aktualisieren
   });
 });

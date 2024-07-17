@@ -68,8 +68,9 @@ $(document).ready(function() {
 
   // Event-Handler für Ja-Button im Modal
   $('#yesBtn').click(function() {
+    baseNumSmileys = 50; // Grundanzahl der Smileys auf 50 zurücksetzen
+    numAddedSmileys = 0; // Zusätzlich hinzugefügte Smileys auf 0 zurücksetzen
     smileyStates = Array(baseNumSmileys).fill('🟡'); // Alle Smileys zurücksetzen
-    numAddedSmileys = 0; // Zusätzlich hinzugefügte Smileys zurücksetzen
     saveSmileyStates(); // Zustände im Local Storage speichern
     createSmileys(); // Smileys aktualisieren
     $('#modal').css('display', 'none'); // Modal schließen

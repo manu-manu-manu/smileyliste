@@ -46,10 +46,6 @@ $(document).ready(function() {
   $('#container').on('click', '.smiley', function() {
     var index = $(this).index(); // Index des geklickten Smileys
 
-    // Erweiterung der smileyStates-Liste, falls notwendig
-    if (!smileyStates[index]) {
-      smileyStates[index] = '🟡';
-    }
 
     // Zustand des geklickten Smileys ändern
     if (smileyStates[index] === '🟡') {
@@ -58,8 +54,6 @@ $(document).ready(function() {
       smileyStates[index] = '😊';
     } else if (smileyStates[index] === '😊') {
       smileyStates[index] = '😁';
-    } else {
-      smileyStates[index] = '🟡';
     }
 
     saveSmileyStates(); // Zustände im Local Storage speichern

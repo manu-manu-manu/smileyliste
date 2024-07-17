@@ -29,7 +29,7 @@ $(document).ready(function() {
     }
   }
   
-  // Smileys initial laden
+  // Smileys initial laden und erstellen
   loadSmileyStates();
   createSmileys();
   

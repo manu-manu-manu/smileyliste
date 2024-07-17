@@ -45,13 +45,13 @@ $(document).ready(function() {
   // Event-Handler für Klick auf Smileys
   $('#container').on('click', '.smiley', function() {
     var index = $(this).index(); // Index des geklickten Smileys
-    var currentText = smileyStates[index];
     
-    if (currentText === '🟡') {
+    // Zustand des geklickten Smileys ändern
+    if (smileyStates[index] === '🟡') {
       smileyStates[index] = '😑';
-    } else if (currentText === '😑') {
+    } else if (smileyStates[index] === '😑') {
       smileyStates[index] = '😊';
-    } else if (currentText === '😊') {
+    } else if (smileyStates[index] === '😊') {
       smileyStates[index] = '😁';
     } else {
       smileyStates[index] = '🟡';

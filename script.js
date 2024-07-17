@@ -58,7 +58,7 @@ $(document).ready(function() {
     }
     
     saveSmileyStates(); // Zustände im Local Storage speichern
-    createSmileys(); // Smileys aktualisieren
+    $(this).text(smileyStates[index]); // Text des geklickten Smileys aktualisieren
   });
 
   // Event-Handler für Button "Ergebnisse zurücksetzen"
@@ -67,23 +67,4 @@ $(document).ready(function() {
   });
 
   // Event-Handler für Ja-Button im Modal
-  $('#yesBtn').click(function() {
-    smileyStates = Array(baseNumSmileys).fill('🌕'); // Alle Smileys zurücksetzen
-    numAddedSmileys = 0; // Zusätzlich hinzugefügte Smileys zurücksetzen
-    saveSmileyStates(); // Zustände im Local Storage speichern
-    createSmileys(); // Smileys aktualisieren
-    $('#modal').css('display', 'none'); // Modal schließen
-  });
-
-  // Event-Handler für Nein-Button im Modal
-  $('#noBtn').click(function() {
-    $('#modal').css('display', 'none'); // Modal schließen
-  });
-
-  // Event-Handler für Button "Weitere 50 hinzufügen"
-  $('#addBtn').click(function() {
-    numAddedSmileys += 50;
-    saveSmileyStates(); // Zustände im Local Storage speichern
-    createSmileys(); // Smileys aktualisieren
-  });
-});
+  $('#yesBtn

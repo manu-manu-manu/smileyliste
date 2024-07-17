@@ -84,11 +84,6 @@ $(document).ready(function() {
   $('#addBtn').click(function() {
     numAddedSmileys += 50;
 
-    // Erweiterung der smileyStates-Liste um die neuen Smileys
-    for (var i = 0; i < 50; i++) {
-      smileyStates.push('🟡');
-    }
-
     saveSmileyStates(); // Zustände im Local Storage speichern
     createSmileys(); // Smileys aktualisieren
   });

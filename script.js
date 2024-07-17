@@ -30,7 +30,7 @@ $(document).ready(function() {
   function createSmileys() {
     var container = $('#container');
     container.empty(); // Container leeren, falls bereits gefüllt
-    
+
     var totalSmileys = baseNumSmileys + numAddedSmileys;
     for (var i = 0; i < totalSmileys; i++) {
       var smiley = $('<div/>').addClass('smiley').text(smileyStates[i] || '🟡');
@@ -45,7 +45,12 @@ $(document).ready(function() {
   // Event-Handler für Klick auf Smileys
   $('#container').on('click', '.smiley', function() {
     var index = $(this).index(); // Index des geklickten Smileys
-    
+
+    // Erweiterung der smileyStates-Liste, falls notwendig
+    if (!smileyStates[index]) {
+      smileyStates[index] = '🟡';
+    }
+
     // Zustand des geklickten Smileys ändern
     if (smileyStates[index] === '🟡') {
       smileyStates[index] = '😑';
@@ -56,7 +61,7 @@ $(document).ready(function() {
     } else {
       smileyStates[index] = '🟡';
     }
-    
+
     saveSmileyStates(); // Zustände im Local Storage speichern
     $(this).text(smileyStates[index]); // Text des geklickten Smileys aktualisieren
   });
@@ -84,7 +89,12 @@ $(document).ready(function() {
   // Event-Handler für Button "Weitere 50 hinzufügen"
   $('#addBtn').click(function() {
     numAddedSmileys += 50;
-    baseNumSmileys += 50; // Grundanzahl der Smileys erhöhen
+
+    // Erweiterung der smileyStates-Liste um die neuen Smileys
+    for (var i = 0; i < 50; i++) {
+      smileyStates.push('🟡');
+    }
+
     saveSmileyStates(); // Zustände im Local Storage speichern
     createSmileys(); // Smileys aktualisieren
   });

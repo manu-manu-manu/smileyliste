@@ -53,7 +53,7 @@ $(document).ready(function() {
       smileyStates[index] = '😊';
     } else if (smileyStates[index] === '😊') {
       smileyStates[index] = '😁';
-    } else if (smileyStates[index] === '😁') {
+    } else {
       smileyStates[index] = '🟡';
     }
 
@@ -84,7 +84,12 @@ $(document).ready(function() {
   // Event-Handler für Button "Weitere 50 hinzufügen"
   $('#addBtn').click(function() {
     numAddedSmileys += 50;
-    loadSmileyStates();
+
+    // Erweiterung der smileyStates-Liste um die neuen Smileys
+    for (var i = 0; i < 50; i++) {
+      smileyStates.push('🟡');
+    }
+
     saveSmileyStates(); // Zustände im Local Storage speichern
     createSmileys(); // Smileys aktualisieren
   });

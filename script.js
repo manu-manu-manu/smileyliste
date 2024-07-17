@@ -7,6 +7,10 @@ $(document).ready(function() {
     var storedStates = localStorage.getItem('smileyStates');
     if (storedStates) {
       smileyStates = JSON.parse(storedStates);
+      // Überprüfen, ob die Anzahl der Smileys im Local Storage übereinstimmt
+      if (smileyStates.length !== numSmileys) {
+        numSmileys = smileyStates.length;
+      }
     } else {
       smileyStates = Array(numSmileys).fill('🌕');
     }
